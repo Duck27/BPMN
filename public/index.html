@@ -12,6 +12,32 @@
       #canvas > div {
         height: 100%;
       }
+
+      .export {
+        padding: 5px;
+        margin-right: 20px;
+        color: red;
+      }
+      .work {
+        position: relative;
+        top: -5px;
+        width: 25px;
+        height: 25px;
+        border: 3px solid rgb(255, 0, 0);
+        border-radius: 50%;
+      }
+      .work:after {
+        position: absolute;
+        top: 5px;
+        left: 6px;
+        content: "";
+        display: block;
+        width: 7px;
+        height: 7px;
+        border-left: 3px solid rgb(255, 0, 0);
+        border-bottom: 3px solid rgb(255, 0, 0);
+        transform: rotate(45deg);
+      }
     </style>
 
     <!-- required viewer styles -->
@@ -19,18 +45,51 @@
       rel="stylesheet"
       href="https://unpkg.com/bpmn-js@9.0.1/dist/assets/bpmn-js.css"
     />
-
+    <link
+      rel="stylesheet"
+      href="../node_modules/bpmn-js/dist/assets/diagram-js.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bpmn-js/dist/assets/bpmn-font/css/bpmn.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bpmn-js/dist/assets/diagram-js.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bpmn-js-color-picker/colors/color-picker.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bpmn-js-properties-panel/dist/assets/properties-panel.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bpmn-js-properties-panel/dist/assets/element-templates.css"
+    />
     <!--
     this is an example of how to use bpmn-js in a standalone application built with
     CommonJS modules + browserify
   -->
 
-    <title>npm/browserify example - bpmn-js-examples</title>
+    <title>Salty duck</title>
   </head>
   <body>
-    <h1>Pizza Collaboration Viewer</h1>
-
-    <div id="canvas"></div>
+    <div class="modeler">
+      <div id="canvas"></div>
+      <div id="properties"></div>
+    </div>
+    <hr />
+    <div class="control">
+      <button class="export">скачать XML</button>
+      <button class="work"></button>
+    </div>
 
     <script src="./app.bundled.js"></script>
   </body>

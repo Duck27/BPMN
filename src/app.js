@@ -1,25 +1,88 @@
-// we use stringify to inline an example XML document
 import pizzaDiagram from "../resources/pizza-collaboration.bpmn";
-
-// make sure you added bpmn-js to your your project
-// dependencies via npm install --save bpmn-js
+import simpleDiagram from "../resources/simple.bpmn";
 import BpmnViewer from "bpmn-js";
+import Modeler from "bpmn-js/lib/Modeler";
+import BpmnColorPickerModule from "../node_modules/bpmn-js-color-picker";
+import {
+  BpmnPropertiesPanelModule,
+  BpmnPropertiesProviderModule,
+} from "../node_modules/bpmn-js-properties-panel";
+import AddExporter from "../node_modules/@bpmn-io/add-exporter";
 
-var viewer = new BpmnViewer({
+var modeler = new Modeler({
+  exporter: {
+    name: "my-tool",
+    version: "120-beta.100",
+  },
   container: "#canvas",
+  height: 800,
+  propertiesPanel: {
+    parent: "#properties",
+  },
+  additionalModules: [
+    BpmnColorPickerModule,
+    BpmnPropertiesPanelModule,
+    BpmnPropertiesProviderModule,
+    AddExporter,
+  ],
+
+  /* кастомные модули пока не нужны
+ moddleExtensions: {
+    magic: magicModdleDescriptor,
+  },
+*/
 });
 
-viewer
-  .importXML(pizzaDiagram)
+// import magicPropertiesProviderModule from "/src/provider-magic";
+// import magicModdleDescriptor from "/src/descriptors/magic";
+
+modeler
+  .importXML(simpleDiagram)
   .then(function (result) {
-    const { warnings } = result;
+    var moddle = modeler.get("moddle");
 
-    console.log("success !", warnings);
+    // create a BPMN element that can be serialized to XML during export
+    var newCondition = moddle.create("bpmn:FormalExpression", {
+      body: "${ value > 100 }",
+    });
 
-    viewer.get("canvas").zoom("fit-viewport");
+    // write property, no undo support
+    sequenceFlow.conditionExpression = newCondition;
+
+    var elementRegistry = moddle.get("elementRegistry");
+
+    var sequenceFlowElement = elementRegistry.get("SequenceFlow_1"),
+      sequenceFlow = sequenceFlowElement.businessObject;
+
+    alert(sequenceFlow.name); // 'YES'
+    sequenceFlow.conditionExpression; // ModdleElement { $type: 'bpmn:FormalExpression', ... }
+
+    // you may hook into any of the following events
+
+    modeler.get("canvas").zoom("fit-viewport");
   })
-  .catch(function (err) {
-    const { warnings, message } = err;
+  .catch(function (err) {});
 
-    console.log("something went wrong:", warnings, message);
+let exp = document.querySelector(".export");
+let work = document.querySelector(".work");
+
+async function exportXML() {
+  const result = await modeler.saveXML({ format: true }, (err, xml) =>
+    console.log(xml)
+  );
+}
+
+function UpdateName() {
+  var elementRegistry = modeler.get("elementRegistry"),
+    modeling = modeler.get("modeling");
+  let a = elementRegistry.get("_6-53");
+  console.log(a);
+
+  modeling.updateProperties(a, {
+    name: "QWERTY",
+    id: 123,
   });
+}
+
+exp.addEventListener("click", exportXML);
+work.addEventListener("click", UpdateName);
