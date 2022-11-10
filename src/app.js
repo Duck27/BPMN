@@ -65,6 +65,7 @@ modeler
 
 let exp = document.querySelector(".export");
 let work = document.querySelector(".work");
+let work_help = document.querySelector(".work-help");
 
 async function exportXML() {
   const result = await modeler.saveXML({ format: true }, (err, xml) =>
@@ -75,14 +76,13 @@ async function exportXML() {
 function UpdateName() {
   var elementRegistry = modeler.get("elementRegistry"),
     modeling = modeler.get("modeling");
-  let a = elementRegistry.get("_6-53");
-  console.log(a);
+  let elem = elementRegistry.get("_6-53");
+  var field = document.querySelector(".work");
 
-  modeling.updateProperties(a, {
-    name: "QWERTY",
-    id: 123,
+  modeling.updateProperties(elem, {
+    name: field.value,
   });
 }
 
 exp.addEventListener("click", exportXML);
-work.addEventListener("click", UpdateName);
+work_help.addEventListener("click", UpdateName);

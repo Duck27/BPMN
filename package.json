@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "all": "run-s bundle open",
-    "build": "webpack",
+    "start": "NODE ./dist/bundle.js",
+    "build": "webpack -w",
     "build:es5": "webpack --config webpack.es5.config.js",
     "build:watch": "webpack -w",
     "open": "opn ./public/index.html",
@@ -30,6 +31,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "nodemon": "^2.0.20",
     "npm-run-all": "^4.1.2",
     "opn-cli": "^3.1.0",
     "webpack": "^5.74.0",
@@ -38,8 +40,11 @@
   "dependencies": {
     "@bpmn-io/add-exporter": "^0.2.0",
     "@bpmn-io/properties-panel": "^0.23.0",
+    "body-parser": "^1.20.1",
     "bpmn-js": "^10.2.1",
     "bpmn-js-color-picker": "^0.4.0",
-    "bpmn-js-properties-panel": "^1.10.0"
+    "bpmn-js-properties-panel": "^1.10.0",
+    "express": "^4.18.2",
+    "pg": "^8.8.0"
   }
 }

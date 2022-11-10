@@ -20,15 +20,15 @@
       }
       .work {
         position: relative;
-        top: -5px;
-        width: 25px;
-        height: 25px;
+        text-align: center;
+        margin-left: 150px;
+        width: 100px;
+        height: 40px;
         border: 3px solid rgb(255, 0, 0);
         border-radius: 50%;
       }
       .work:after {
         position: absolute;
-        top: 5px;
         left: 6px;
         content: "";
         display: block;
@@ -88,7 +88,8 @@
     <hr />
     <div class="control">
       <button class="export">скачать XML</button>
-      <button class="work"></button>
+      <input type="text" class="work" />
+      <button class="work-help">Обновить</button>
     </div>
 
     <script src="./app.bundled.js"></script>
