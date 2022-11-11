@@ -38,33 +38,21 @@
         border-bottom: 3px solid rgb(255, 0, 0);
         transform: rotate(45deg);
       }
+      .changeForm {
+        display: inline;
+      }
     </style>
 
     <!-- required viewer styles -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/bpmn-js@9.0.1/dist/assets/bpmn-js.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../node_modules/bpmn-js/dist/assets/diagram-js.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../node_modules/bpmn-js/dist/assets/bpmn-font/css/bpmn.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/bpmn-js/dist/assets/diagram-js.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js@9.0.1/dist/assets/bpmn-js.css" />
+    <link rel="stylesheet" href="../node_modules/bpmn-js/dist/assets/diagram-js.css" />
+    <link rel="stylesheet" href="../node_modules/bpmn-js/dist/assets/bpmn-font/css/bpmn.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js/dist/assets/diagram-js.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/bpmn-js-color-picker/colors/color-picker.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js-color-picker/colors/color-picker.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/bpmn-js-properties-panel/dist/assets/properties-panel.css"
@@ -88,8 +76,10 @@
     <hr />
     <div class="control">
       <button class="export">скачать XML</button>
-      <input type="text" class="work" />
-      <button class="work-help">Обновить</button>
+      <form name="change" class="changeForm">
+        <input type="text" class="work" name="text" />
+        <button type="submit" class="work-help">Обновить</button>
+      </form>
     </div>
 
     <script src="./app.bundled.js"></script>
